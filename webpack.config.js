@@ -9,8 +9,10 @@ var config = {
 	},
 	output: {
 		path: path.join(__dirname, './dist'),
-		publicPath: '/dist',
-		filename: 'main.js'
+        publicPath: '/dist',
+        // filename:'main.js'
+		filename: '[name].js',
+		chunkFilename: '[name].chunk.js'
 	},
 	module: {
 		rules: [ 
@@ -42,7 +44,11 @@ var config = {
     },
     plugins:[ 
         //重命名提取后的css文件
-        new ExtractTextPlugin("main.css")  
+        new ExtractTextPlugin({
+            filename:'[name].css',
+            allChunks:true
+        })  
+        // new ExtractTextPlugin('main.js')  
       ]
     
 };
